@@ -49,17 +49,11 @@ object WCSParams {
     val requestParam =
       params.validatedParam("request", validValues=validRequests)
 
-    val firstStageValidation =
-      Apply[ValidatedNel[WCSParamsError, ?]].map2(
-        serviceParam,
-        requestParam
-      ) { case (a, b) => b }
-
-    firstStageValidation
-      .andThen { request =>
-        // Further validation and building based on request type.
-        requestMap(request)(params)
-      }
+    (serviceParam, requestParam).mapN({ case (svcParam, reqParam) =>
+      reqParam
+    }).andThen({ reqParam =>
+      requestMap(reqParam)(params)
+    })
   }
 }
 
