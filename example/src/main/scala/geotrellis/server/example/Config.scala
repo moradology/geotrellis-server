@@ -1,4 +1,4 @@
-package geotrellis.server.http4s
+package geotrellis.server.example
 
 import cats.effect.IO
 import com.typesafe.config.ConfigFactory

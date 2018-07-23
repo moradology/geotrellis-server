@@ -1,4 +1,4 @@
-package geotrellis.server.http4s.maml
+package geotrellis.server.example.ndvi
 
 import geotrellis.server.core.maml._
 
