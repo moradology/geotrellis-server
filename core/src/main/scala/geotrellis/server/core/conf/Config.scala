@@ -1,4 +1,4 @@
-package geotrellis.server.example
+package geotrellis.server.core.conf
 
 import cats.effect.IO
 import com.typesafe.config.ConfigFactory

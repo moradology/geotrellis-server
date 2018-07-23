@@ -1,6 +1,6 @@
 package geotrellis.server.example.ndvi
 
-import geotrellis.server.example.Config
+import geotrellis.server.core.conf.Config
 import geotrellis.server.core.maml._
 
 import com.azavea.maml.ast.Expression
@@ -14,9 +14,8 @@ import fs2.StreamApp.ExitCode
 import org.http4s.circe._
 import org.http4s._
 import org.http4s.dsl.Http4sDsl
-import org.http4s.client.blaze.Http1Client
 import org.http4s.server.blaze.BlazeBuilder
-import org.http4s.server.{AuthMiddleware, HttpMiddleware}
+import org.http4s.server.HttpMiddleware
 import org.http4s.server.middleware.{GZip, CORS, CORSConfig}
 import org.http4s.headers.{Location, `Content-Type`}
 import org.http4s.client.Client
@@ -41,9 +40,6 @@ object NdviMamlServer extends StreamApp[IO] with LazyLogging with Http4sDsl[IO] 
   private val commonMiddleware: HttpMiddleware[IO] = { (routes: HttpService[IO]) =>
     CORS(routes)
   }
-
-  val onFailure: AuthedService[String, IO] =
-    Kleisli(req => OptionT.liftF(Forbidden(req.authInfo)))
 
   def stream(args: List[String], requestShutdown: IO[Unit]): Stream[IO, ExitCode] = {
     for {

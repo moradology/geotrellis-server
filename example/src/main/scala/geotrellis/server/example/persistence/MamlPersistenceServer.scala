@@ -1,6 +1,6 @@
 package geotrellis.server.example.persistence
 
-import geotrellis.server.example.Config
+import geotrellis.server.core.conf.Config
 import geotrellis.server.core.maml._
 
 import com.azavea.maml.ast.Expression
