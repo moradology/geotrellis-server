@@ -23,6 +23,7 @@ object Dependencies {
   val decline           = "com.monovore"                  %% "decline"              % "0.4.0"
   val geotrellisS3      = "org.locationtech.geotrellis"   %% "geotrellis-s3"        % gtVer
   val geotrellisSpark   = "org.locationtech.geotrellis"   %% "geotrellis-spark"     % gtVer
+  val geotrellisVlm     = "com.azavea.geotrellis"         %% "geotrellis-contrib-vlm" % "0.1.0"
   val hadoop            = "org.apache.hadoop"             %  "hadoop-client"        % "2.8.0" % "provided"
   val http4sBlazeClient = "org.http4s"                    %% "http4s-blaze-client"  % http4sVer
   val http4sBlazeServer = "org.http4s"                    %% "http4s-blaze-server"  % http4sVer

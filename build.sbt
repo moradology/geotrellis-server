@@ -111,6 +111,7 @@ lazy val core = project
       circeShapes,
       geotrellisS3,
       geotrellisSpark,
+      geotrellisVlm,
       cats,
       catsEffect,
       mamlJvm,
