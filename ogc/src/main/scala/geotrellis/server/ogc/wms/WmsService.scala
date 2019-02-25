@@ -60,14 +60,14 @@ class WmsService(model: RasterSourcesModel, serviceUrl: URL)(implicit contextShi
               case sl@SimpleWmsLayer(_, _, _, _, _) =>
                 LayerExtent.identity(sl)
               case sl@MapAlgebraWmsLayer(_, _, _, parameters, expr, _) =>
-                LayerExtent(IO.pure(expr), IO.pure(parameters), BufferingInterpreter.DEFAULT)
+                LayerExtent(IO.pure(expr), IO.pure(parameters), Interpreter.DEFAULT)
             }
 
             val evalHisto = layer match {
               case sl@SimpleWmsLayer(_, _, _, _, _) =>
                 LayerHistogram.identity(sl, 512)
               case sl@MapAlgebraWmsLayer(_, _, _, parameters, expr, _) =>
-                LayerHistogram(IO.pure(expr), IO.pure(parameters), BufferingInterpreter.DEFAULT, 512)
+                LayerHistogram(IO.pure(expr), IO.pure(parameters), Interpreter.DEFAULT, 512)
             }
 
             (evalExtent(re.extent, re.cellSize), evalHisto).parMapN {
@@ -85,8 +85,7 @@ class WmsService(model: RasterSourcesModel, serviceUrl: URL)(implicit contextShi
                 logger.debug(errs.toList.toString)
                 BadRequest(errs.asJson)
               case Left(err) =>            // exceptions
-                err.printStackTrace()
-                logger.debug(err.toString, err)
+                logger.error(err.toString, err)
                 InternalServerError(err.toString)
             }
           }.getOrElse(BadRequest("No such layer"))

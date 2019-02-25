@@ -26,7 +26,12 @@ object SimpleWmsLayer {
     def kind(self: SimpleWmsLayer): MamlKind = MamlKind.Image
     def extentReification(self: SimpleWmsLayer)(implicit contextShift: ContextShift[IO]): (Extent, CellSize) => IO[Literal] =
       (extent: Extent, cs: CellSize) =>  IO {
-        self.source.reprojectToGrid(self.crs, RasterExtent(extent, cs)).read(extent).map(RasterLit(_)).get
+        self
+          .source
+          .reprojectToGrid(self.crs, RasterExtent(extent, cs))
+          .read(extent)
+          .map(RasterLit(_))
+          .get
       }
   }
 
