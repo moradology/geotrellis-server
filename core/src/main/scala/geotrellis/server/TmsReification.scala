@@ -1,6 +1,7 @@
 package geotrellis.server
 
 import geotrellis.raster.{ProjectedRaster, MultibandTile}
+
 import cats.effect._
 import simulacrum._
 

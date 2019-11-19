@@ -2,8 +2,7 @@ package geotrellis.server.ogc
 
 import geotrellis.server.extent.SampleUtils
 import geotrellis.server.ogc.wms._
-import geotrellis.contrib.vlm._
-import geotrellis.raster.GridExtent
+import geotrellis.raster.{RasterSource, GridExtent}
 import geotrellis.vector.Extent
 import geotrellis.proj4.CRS
 import com.azavea.maml.ast._

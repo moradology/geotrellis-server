@@ -1,9 +1,6 @@
 package geotrellis.server
 
 import geotrellis.server.vlm._
-import geotrellis.contrib.vlm._
-import geotrellis.contrib.vlm.geotiff._
-import geotrellis.contrib.vlm.TargetRegion
 import geotrellis.raster._
 import geotrellis.raster.io.geotiff.AutoHigherResolution
 import geotrellis.raster.resample.NearestNeighbor
