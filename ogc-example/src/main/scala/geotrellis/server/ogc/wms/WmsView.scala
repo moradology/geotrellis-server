@@ -9,9 +9,6 @@ import geotrellis.raster.histogram._
 
 import com.azavea.maml.error._
 import com.azavea.maml.eval._
-import geotrellis.contrib.vlm.RasterSource
-import geotrellis.contrib.vlm.geotiff._
-import geotrellis.contrib.vlm.avro._
 import geotrellis.raster.histogram.Histogram
 import geotrellis.spark.tiling._
 import geotrellis.spark._
@@ -19,7 +16,6 @@ import geotrellis.proj4._
 import geotrellis.raster.render.{ColorMap, ColorRamp, Png}
 import geotrellis.raster._
 import com.typesafe.scalalogging.LazyLogging
-import geotrellis.spark.io.s3.AmazonS3Client
 import scalaxb.CanWriteXML
 import org.http4s.scalaxml._
 import org.http4s.circe._

@@ -6,22 +6,14 @@ import geotrellis.server.vlm.RasterSourceUtils
 import cats.data.{NonEmptyList => NEL}
 import cats.effect.{IO, ContextShift}
 import cats.implicits._
-import geotrellis.contrib.vlm.RasterSource
-import geotrellis.contrib.vlm.gdal.GDALRasterSource
-import geotrellis.raster.{
-  CellSize,
-  GridExtent,
-  IntArrayTile,
-  MultibandTile,
-  ProjectedRaster,
-  RasterExtent,
-  Tile
-}
+import geotrellis.raster._
+import geotrellis.layer._
 import geotrellis.proj4.{WebMercator, LatLng}
+import geotrellis.raster.gdal._
 import geotrellis.raster.reproject.ReprojectRasterExtent
 import geotrellis.raster.resample.NearestNeighbor
 import geotrellis.server.{ExtentReification, HasRasterExtents, TmsReification}
-import geotrellis.spark.SpatialKey
+import geotrellis.layer.SpatialKey
 import geotrellis.vector.{io => _, _}
 
 import com.typesafe.scalalogging.LazyLogging
@@ -87,7 +79,7 @@ package object stac extends RasterSourceUtils with LazyLogging {
             if (intersects) {
               val rasterExtent = RasterExtent(extent, cellSize)
               rasterSource
-                .reproject(WebMercator, NearestNeighbor)
+                .reproject(WebMercator, DefaultTarget)
                 .resampleToGrid(
                   GridExtent[Long](rasterExtent.extent, rasterExtent.cellSize),
                   NearestNeighbor
@@ -119,7 +111,8 @@ package object stac extends RasterSourceUtils with LazyLogging {
         IO {
           getRasterSource(self.uri)
         } map { rasterSource =>
-          (rasterSource.resolutions map { res =>
+          (rasterSource.resolutions map { cs =>
+            val res = RasterExtent(rasterSource.extent, cs)
             ReprojectRasterExtent(RasterExtent(res.extent,
               res.cellwidth,
               res.cellheight,

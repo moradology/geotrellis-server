@@ -3,8 +3,7 @@ import sbt._
 object Dependencies {
 
   val circeVer = "0.11.1"
-  val gtVer = "3.0.0-M3"
-  val gtcVer = "3.16.0"
+  val gtVer = "3.1.0"
   val http4sVer = "0.20.0"
   val scalaVer = "2.11.12"
   val crossScalaVer = Seq(scalaVer, "2.12.7")
@@ -28,12 +27,11 @@ object Dependencies {
   val geotrellisRaster = "org.locationtech.geotrellis" %% "geotrellis-raster" % gtVer
   val geotrellisVector = "org.locationtech.geotrellis" %% "geotrellis-vector" % gtVer
   val geotrellisS3 = "org.locationtech.geotrellis" %% "geotrellis-s3" % gtVer
+  val geotrellisGDAL = "org.locationtech.geotrellis" %% "geotrellis-gdal" % gtVer
   val geotrellisSpark = "org.locationtech.geotrellis" %% "geotrellis-spark" % gtVer
   val geotrellisHBase = "org.locationtech.geotrellis" %% "geotrellis-hbase" % gtVer
   val geotrellisAccumulo = "org.locationtech.geotrellis" %% "geotrellis-accumulo" % gtVer
   val geotrellisCassandra = "org.locationtech.geotrellis" %% "geotrellis-cassandra" % gtVer
-  val geotrellisVlm = "com.azavea.geotrellis" %% "geotrellis-contrib-vlm" % gtcVer
-  val geotrellisContribGDAL = "com.azavea.geotrellis" %% "geotrellis-contrib-gdal" % gtcVer
   val hadoop = "org.apache.hadoop" % "hadoop-client" % "2.8.0" % Provided
   val http4sBlazeClient = "org.http4s" %% "http4s-blaze-client" % http4sVer
   val http4sBlazeServer = "org.http4s" %% "http4s-blaze-server" % http4sVer

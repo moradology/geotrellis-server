@@ -25,8 +25,7 @@ import cats.implicits._
 import cats.effect._
 import com.typesafe.scalalogging.LazyLogging
 import geotrellis.raster._
-import geotrellis.raster.histogram._
-import geotrellis.raster.render._
+import geotrellis.raster.render.RGBA
 
 import scala.math._
 import java.net.URI
